@@ -24,6 +24,11 @@ describe('Airport', function() {
       airport.capacity = 0;
       expect(function() { airport.instructPlaneToLand(airfrance787.name); }).toThrowError("AirFrance 787 cannot land due to airport full hangar");
     });
+    it("Cannot land plane if it is already landed in this airport", function() {
+      spyOn(weather, 'getWeather').and.returnValue('Sunny');
+      cityAirport.instructPlaneToLand(airfrance787.name);
+      expect(function() { cityAirport.instructPlaneToLand(airfrance787.name); }).toThrowError("AirFrance 787 cannot land due to airplane already being in this airport");
+    });
   });
 
   describe("#instructPlaneToTakeOff", function () {

@@ -12,6 +12,8 @@ Airport.prototype = {
       throw new Error(`${plane} cannot land due to bad weather`)
     }else if (this.hangar.length >= this.capacity) {
       throw new Error(`${plane} cannot land due to airport full hangar`)
+    }else if (this.hangar.indexOf(plane) !== -1) {
+      throw new Error(`${plane} cannot land due to airplane already being in this airport`)
     }
     this.hangar.push(plane);
     return true;
