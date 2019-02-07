@@ -4,6 +4,8 @@ describe('Airport', function() {
 
   beforeEach(function() {
     airport = new Airport();
+    cityAirport = new Airport();
+    stansteadAirport = new Airport();
     weather = airport.weather;
     airfrance787 = { name : "AirFrance 787" };
   });
@@ -53,6 +55,15 @@ describe('Airport', function() {
       airport.instructPlaneToLand(airfrance787.name);
       airport.instructPlaneToTakeOff(airfrance787.name);
       expect(airport.hangar).toEqual( []);
+    });
+  });
+
+  describe("#capacity", function () {
+    it("Can change hangar capacity so different airports can use the app", function() {
+      cityAirport.capacity = 2;
+      expect(cityAirport.capacity).toEqual( 2);
+      stansteadAirport.capacity = 3;
+      expect(stansteadAirport.capacity).toEqual( 3);
     });
   });
 });
