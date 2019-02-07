@@ -4,7 +4,7 @@ describe('Plane', function() {
 
   beforeEach(function () {
     cityAirport = new Airport();
-    airFrance787 = new Plane(cityAirport);
+    airFrance787 = new Plane('AirFrance 787', cityAirport);
   });
 
   describe('#landed', function () {
