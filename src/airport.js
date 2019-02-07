@@ -6,6 +6,9 @@ function Airport() {
 Airport.prototype = {
 
   instructPlaneToLand: function(plane) {
+    if (this.weather.getWeather() === 'Stormy') {
+      throw new Error(`${plane} cannot land due to bad weather`)
+    }
     return true;
   },
 

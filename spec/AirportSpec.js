@@ -13,6 +13,10 @@ describe('Airport', function() {
     it("Can land a plane", function(){
       expect(airport.instructPlaneToLand(airfrance787.name)).toEqual( true);
     });
+    it("Cannot land plane if weather is stormy", function () {
+      spyOn(weather, 'getWeather').and.returnValue('Stormy');
+      expect(function() { airport.instructPlaneToLand(airfrance787.name); }).toThrowError("AirFrance 787 cannot land due to bad weather");
+    });
 
   });
 
