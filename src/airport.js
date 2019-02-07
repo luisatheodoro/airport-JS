@@ -1,4 +1,5 @@
 function Airport() {
+  this.weather = new Weather();
 
 }
 
@@ -9,6 +10,9 @@ Airport.prototype = {
   },
 
   instructPlaneToTakeOff: function(plane) {
+    if (this.weather.getWeather() === 'Stormy') {
+      throw new Error(`${plane} cannot take off due to bad weather`)
+    }
     return true;
   }
 
