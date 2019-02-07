@@ -1,6 +1,6 @@
 function Plane(airport) {
   this.airport = airport;
-  this.landed = null;
+  this.landed = false;
 }
 
 Plane.prototype = {
