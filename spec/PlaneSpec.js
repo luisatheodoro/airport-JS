@@ -28,4 +28,12 @@ describe('Plane', function() {
       expect(function() { airFrance787.land() }).toThrowError("Cannot land, because plane is already landed");
     });
   });
+
+  describe('#take_off', function () {
+    it("Plane cannot take off if plane is already flying", function(){
+      airFrance787.landed = false;
+      expect(function() { airFrance787.takeOff(); }).toThrowError("Cannot take off, because plane has already taken off");
+    });
+  });
+
 });
