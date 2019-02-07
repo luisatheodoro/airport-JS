@@ -5,7 +5,9 @@ function Plane(airport) {
 
 Plane.prototype = {
   land: function () {
-    if (this.airport.instructPlaneToLand()) {
+    if (this.landed) {
+      throw new Error('Cannot land, because plane is already landed');
+    } else if (this.airport.instructPlaneToLand()) {
       this.landed = true;
     }
   }

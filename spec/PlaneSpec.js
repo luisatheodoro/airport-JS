@@ -19,5 +19,13 @@ describe('Plane', function() {
       airFrance787.land();
       expect(airFrance787.landed).toEqual( false);
     });
-  })
+  });
+
+  describe("#land", function () {
+    it("Plane cannot land if plane is already in land", function(){
+      spyOn(cityAirport, 'instructPlaneToLand').and.returnValue(true);
+      airFrance787.landed = true;
+      expect(function() { airFrance787.land() }).toThrowError("Cannot land, because plane is already landed");
+    });
+  });
 });
