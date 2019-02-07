@@ -20,6 +20,8 @@ Airport.prototype = {
   instructPlaneToTakeOff: function(plane) {
     if (this.weather.getWeather() === 'Stormy') {
       throw new Error(`${plane} cannot take off due to bad weather`)
+    }else if (this.hangar.indexOf(plane) === -1) {
+      throw new Error(`${plane} cannot take off as this plane is not in this airport`)
     }
     return true;
   }

@@ -37,6 +37,10 @@ describe('Airport', function() {
       expect(function() { airport.instructPlaneToTakeOff(airfrance787.name); }).toThrowError("AirFrance 787 cannot take off due to bad weather");
     });
 
+    it("Cannot take off if plane is not in the airport", function() {
+      spyOn(weather, 'getWeather').and.returnValue('Sunny');
+      expect(function() { airport.instructPlaneToTakeOff(airfrance787.name); }).toThrowError("AirFrance 787 cannot take off as this plane is not in this airport");
+    });
   });
 
 });
