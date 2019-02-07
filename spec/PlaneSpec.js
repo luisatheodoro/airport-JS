@@ -40,7 +40,7 @@ describe('Plane', function() {
   describe('#take_off', function () {
     it("Plane cannot take off if plane is already flying", function(){
       airFrance787.landed = false;
-      expect(function() { airFrance787.takeOff(); }).toThrowError("Cannot take off, because plane has already taken off");
+      expect(function() { airFrance787.takeOff(); }).toThrowError("Cannot take off, because plane has already taken off or is not in this airport");
     });
   });
 });
