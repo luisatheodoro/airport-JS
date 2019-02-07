@@ -23,6 +23,7 @@ Airport.prototype = {
     }else if (this.hangar.indexOf(plane) === -1) {
       throw new Error(`${plane} cannot take off as this plane is not in this airport`)
     }
+    this.hangar.splice(this.hangar.indexOf(plane), 1);
     return true;
   }
 

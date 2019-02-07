@@ -48,5 +48,11 @@ describe('Airport', function() {
       airport.instructPlaneToLand(airfrance787.name);
       expect(airport.hangar).toEqual([airfrance787.name]);
     });
+    it("Will set hangar status to empty when all planes have taken off", function(){
+      spyOn(weather, 'getWeather').and.returnValue('Sunny');
+      airport.instructPlaneToLand(airfrance787.name);
+      airport.instructPlaneToTakeOff(airfrance787.name);
+      expect(airport.hangar).toEqual( []);
+    });
   });
 });
