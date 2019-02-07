@@ -19,6 +19,14 @@ describe('Plane', function() {
       airFrance787.land();
       expect(airFrance787.landed).toEqual( false);
     });
+
+    it("Returns false to '#landed' when plane has taken off" , function(){
+      spyOn(cityAirport, 'instructPlaneToLand').and.returnValue(true);
+      airFrance787.land();
+      spyOn(cityAirport, 'instructPlaneToTakeOff').and.returnValue(true);
+      airFrance787.takeOff();
+      expect(airFrance787.landed).toEqual( false);
+    });
   });
 
   describe("#land", function () {
@@ -35,5 +43,4 @@ describe('Plane', function() {
       expect(function() { airFrance787.takeOff(); }).toThrowError("Cannot take off, because plane has already taken off");
     });
   });
-
 });

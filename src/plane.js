@@ -15,6 +15,8 @@ Plane.prototype = {
   takeOff: function () {
     if (!this.landed) {
       throw new Error('Cannot take off, because plane has already taken off');
+    }else if (this.airport.instructPlaneToTakeOff()) {
+      this.landed = false;
     }
   }
 };
