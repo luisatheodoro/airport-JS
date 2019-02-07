@@ -13,6 +13,7 @@ Airport.prototype = {
     }else if (this.hangar.length >= this.capacity) {
       throw new Error(`${plane} cannot land due to airport full hangar`)
     }
+    this.hangar.push(plane);
     return true;
   },
 
