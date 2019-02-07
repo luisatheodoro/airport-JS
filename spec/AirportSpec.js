@@ -22,7 +22,6 @@ describe('Airport', function() {
       airport.capacity = 0;
       expect(function() { airport.instructPlaneToLand(airfrance787.name); }).toThrowError("AirFrance 787 cannot land due to airport full hangar");
     });
-
   });
 
   describe("#instructPlaneToTakeOff", function () {
@@ -43,4 +42,11 @@ describe('Airport', function() {
     });
   });
 
+  describe("#Hangar", function () {
+    it("Stores plane in the hangar when landed", function () {
+      spyOn(weather, 'getWeather').and.returnValue('Sunny');
+      airport.instructPlaneToLand(airfrance787.name);
+      expect(airport.hangar).toEqual([airfrance787.name]);
+    });
+  });
 });
