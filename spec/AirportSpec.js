@@ -12,6 +12,14 @@ describe('Airport', function() {
       expect(airport.instructPlaneToLand(airfrance787.name)).toEqual( true);
     });
 
-  })
+  });
+
+  describe("#instructPlaneToTakeOff", function () {
+    it("Can take off plane safely", function () {
+      airport.instructPlaneToLand(airfrance787.name);
+      expect(airport.instructPlaneToTakeOff(airfrance787.name)).toEqual(true);
+    });
+
+  });
 
 });
