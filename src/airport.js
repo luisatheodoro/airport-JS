@@ -8,14 +8,10 @@ function Airport() {
 Airport.prototype = {
 
   instructPlaneToLand: function(plane) {
-    if (this.weather.getWeather() === 'Stormy') {
-      throw new Error(`${plane} cannot land due to bad weather`)
-    }else if (this.hangar.length >= this.capacity) {
-      throw new Error(`${plane} cannot land due to airport full hangar`)
-    }else if (this.hangar.indexOf(plane) !== -1) {
-      throw new Error(`${plane} cannot land due to airplane already being in this airport`)
-    }
-    this.hangar.push(plane);
+    this._isAlreadyParked(plane);
+    this._isCapacityFull(plane);
+    this._throwErrorIfStormy(plane, "land");
+    this._addPlaneToHangar(plane);
     return true;
   },
 
@@ -32,6 +28,12 @@ Airport.prototype = {
     }
   },
 
+  _isAlreadyParked: function(plane) {
+    if (this._findPlaneIndex(plane) !== -1) {
+      throw new Error(`${plane} cannot land due to airplane already being in this airport`)
+    }
+  },
+
   _findPlaneIndex: function(plane) {
     return this.hangar.indexOf(plane)
   },
@@ -44,5 +46,15 @@ Airport.prototype = {
 
   _removePlaneFromHangar: function(plane) {
     this.hangar.splice(this._findPlaneIndex(plane), 1);
+  },
+
+  _addPlaneToHangar: function(plane) {
+    this.hangar.push(plane);
+  },
+
+  _isCapacityFull: function(plane) {
+    if (this.hangar.length >= this.capacity) {
+      throw new Error(`${plane} cannot land due to airport full hangar`)
+    }
   },
 };
