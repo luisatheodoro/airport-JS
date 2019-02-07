@@ -8,5 +8,8 @@ Weather.prototype = {
 
   getWeather: function () {
     return this._randomWeather();
+  },
+  isStormy: function () {
+    return this.getWeather() === 'Stormy';
   }
 };

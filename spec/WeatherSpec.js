@@ -10,6 +10,11 @@ describe('Weather', function () {
     it('returns sunny', function () {
       spyOn(Math,'random').and.returnValue(0);
       expect(weather.getWeather()).toEqual("Sunny");
-    })
+    });
+
+    it('returns true if is stormy', function(){
+      spyOn(weather,'getWeather').and.returnValue("Stormy");
+      expect(weather.isStormy()).toEqual(true);
+    });
   })
 });

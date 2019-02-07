@@ -28,5 +28,4 @@ Airport.prototype = {
     this.hangar.splice(this.hangar.indexOf(plane), 1);
     return true;
   }
-
 };
