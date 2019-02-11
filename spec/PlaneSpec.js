@@ -1,4 +1,4 @@
-candescribe('Plane', function() {
+describe('Plane', function() {
   var airFrance787;
   var cityAirport;
 
