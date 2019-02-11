@@ -7,7 +7,7 @@ function Airport() {
 
 Airport.prototype = {
 
-  instructPlaneToLand: function(plane) {
+  canLand: function(plane) {
     this._isAlreadyParked(plane);
     this._isCapacityFull(plane);
     this._throwErrorIfStormy(plane, "land");
@@ -15,7 +15,7 @@ Airport.prototype = {
     return true;
   },
 
-  instructPlaneToTakeOff: function(plane) {
+  canTakeOff: function(plane) {
     this._isNotParked(plane);
     this._throwErrorIfStormy(plane, "take off");
     this._removePlaneFromHangar(plane);
