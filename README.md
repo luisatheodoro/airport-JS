@@ -8,7 +8,7 @@ In the terminal write `open SpecRunner.html`
 ## Using the App
 
 ```
-With the SpecRunner.html file opened in the browser, click the page with the right mouse button and select inspect 
+With the SpecRunner.html file opened in the browser, click the page with the right mouse button and select inspect
 then select console from the options, with console opened you can try landing and taking off planes.
 
 to create an airport:
@@ -18,10 +18,10 @@ to create a plane:
 var planeName = new Plane(airportName)
 
 to instruct a plane who wants to land:
-aiportName.instructPlaneToLand(planeName)
+aiportName.canLand(planeName)
 
 to instruct a plane who wants to take off:
-aiportName.instructPlaneToTakeOff(planeName)
+aiportName.canTakeOff(planeName)
 
 to change airport capacity:
 aiportName.capacity = capacityNumber
@@ -45,8 +45,8 @@ planeName.landed
 
 ## Landing User Stories
 ```
-As an air traffic controller 
-So I can get passengers to a destination 
+As an air traffic controller
+So I can get passengers to a destination
 I want to instruct a plane to land at an airport
 ```
 
@@ -59,8 +59,8 @@ airFrance784.landed
 ----
 
 ```
-As an air traffic controller 
-To ensure safety 
+As an air traffic controller
+To ensure safety
 I want to prevent landing when weather is stormy
 ```
 
@@ -75,8 +75,8 @@ airFrance785.landed
 ----
 
 ```
-As an air traffic controller 
-To ensure safety 
+As an air traffic controller
+To ensure safety
 I want to prevent landing when the airport is full
 ```
 ##### Running this user story on browser console:
@@ -93,9 +93,9 @@ ryanair780.land();
 ----
 
 ```
-As an air traffic controller 
-To ensure right information 
-I want to prevent logging a plane that is alreaded in the airport
+As an air traffic controller
+To ensure right information
+I want to prevent logging a plane that is already in the airport
 ```
 
 ##### Running this user story on browser console:
@@ -108,8 +108,8 @@ airFrance787.land();\
 ## Take Off User Stories
 
 ```
-As an air traffic controller 
-So I can get passengers on the way to their destination 
+As an air traffic controller
+So I can get passengers on the way to their destination
 I want to instruct a plane to take off from an airport and confirm that it is no longer in the airport
 ```
 
@@ -125,8 +125,8 @@ cityAirport.hangar\
 ----
 
 ```
-As an air traffic controller 
-To ensure safety 
+As an air traffic controller
+To ensure safety
 I want to prevent taking off when weather is stormy
 ```
 
@@ -142,8 +142,8 @@ airFrance789.takeOff();
 ----
 
 ```
-As an air traffic controller 
-To ensure right information 
+As an air traffic controller
+To ensure right information
 I want to prevent logging a plane take off that is not in the airport
 ```
 

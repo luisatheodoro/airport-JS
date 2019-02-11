@@ -10,57 +10,57 @@ describe('Airport', function() {
     airfrance787 = { name : "AirFrance 787" };
   });
 
-  describe("#instructPlaneToLand", function() {
+  describe("#canLand", function() {
     it("Can land a plane", function(){
       spyOn(weather, 'getWeather').and.returnValue('Sunny');
-      expect(airport.instructPlaneToLand(airfrance787.name)).toEqual( true);
+      expect(airport.canLand(airfrance787.name)).toEqual( true);
     });
     it("Cannot land plane if weather is stormy", function () {
       spyOn(weather, 'getWeather').and.returnValue('Stormy');
-      expect(function() { airport.instructPlaneToLand(airfrance787.name); }).toThrowError("AirFrance 787 cannot land due to bad weather");
+      expect(function() { airport.canLand(airfrance787.name); }).toThrowError("AirFrance 787 cannot land due to bad weather");
     });
     it("Cannot land plane if airport hangar is full", function () {
       spyOn(weather, 'getWeather').and.returnValue('Sunny');
       airport.capacity = 0;
-      expect(function() { airport.instructPlaneToLand(airfrance787.name); }).toThrowError("AirFrance 787 cannot land due to airport full hangar");
+      expect(function() { airport.canLand(airfrance787.name); }).toThrowError("AirFrance 787 cannot land due to airport full hangar");
     });
     it("Cannot land plane if it is already landed in this airport", function() {
       spyOn(weather, 'getWeather').and.returnValue('Sunny');
-      cityAirport.instructPlaneToLand(airfrance787.name);
-      expect(function() { cityAirport.instructPlaneToLand(airfrance787.name); }).toThrowError("AirFrance 787 cannot land due to airplane already being in this airport");
+      cityAirport.canLand(airfrance787.name);
+      expect(function() { cityAirport.canLand(airfrance787.name); }).toThrowError("AirFrance 787 cannot land due to airplane already being in this airport");
     });
   });
 
-  describe("#instructPlaneToTakeOff", function () {
+  describe("#canTakeOff", function () {
     it("Can take off plane safely", function () {
       spyOn(weather, 'getWeather').and.returnValue('Sunny');
-      airport.instructPlaneToLand(airfrance787.name);
-      expect(airport.instructPlaneToTakeOff(airfrance787.name)).toEqual(true);
+      airport.canLand(airfrance787.name);
+      expect(airport.canTakeOff(airfrance787.name)).toEqual(true);
     });
 
     it("Cannot take off plane if weather is stormy", function () {
       spyOn(weather, 'getWeather').and.returnValue('Sunny');
-      airport.instructPlaneToLand(airfrance787.name);
+      airport.canLand(airfrance787.name);
       spyOn(weather, 'isStormy').and.returnValue(true);
-      expect(function() { airport.instructPlaneToTakeOff(airfrance787.name); }).toThrowError("AirFrance 787 cannot take off due to bad weather");
+      expect(function() { airport.canTakeOff(airfrance787.name); }).toThrowError("AirFrance 787 cannot take off due to bad weather");
     });
 
     it("Cannot take off if plane is not in the airport", function() {
       spyOn(weather, 'getWeather').and.returnValue('Sunny');
-      expect(function() { airport.instructPlaneToTakeOff(airfrance787.name); }).toThrowError("AirFrance 787 cannot take off as this plane is not in this airport");
+      expect(function() { airport.canTakeOff(airfrance787.name); }).toThrowError("AirFrance 787 cannot take off as this plane is not in this airport");
     });
   });
 
   describe("#Hangar", function () {
     it("Stores plane in the hangar when landed", function () {
       spyOn(weather, 'getWeather').and.returnValue('Sunny');
-      airport.instructPlaneToLand(airfrance787.name);
+      airport.canLand(airfrance787.name);
       expect(airport.hangar).toEqual([airfrance787.name]);
     });
     it("Will set hangar status to empty when all planes have taken off", function(){
       spyOn(weather, 'getWeather').and.returnValue('Sunny');
-      airport.instructPlaneToLand(airfrance787.name);
-      airport.instructPlaneToTakeOff(airfrance787.name);
+      airport.canLand(airfrance787.name);
+      airport.canTakeOff(airfrance787.name);
       expect(airport.hangar).toEqual( []);
     });
   });
