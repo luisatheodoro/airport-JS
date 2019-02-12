@@ -1,4 +1,5 @@
-function Airport() {
+function Airport(name) {
+  this.name = name;
   this.weather = new Weather();
   this.capacity = 10;
   this.hangar = [];
