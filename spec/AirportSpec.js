@@ -7,6 +7,7 @@ describe('Airport', function() {
     stansteadAirport = new Airport('Stanstead');
     weather = cityAirport.weather;
     airfrance787 = { name : "AirFrance 787" };
+    ryanAir677 = { name : "Ryan Air 677" };
   });
 
   describe("#canLand", function() {
@@ -46,6 +47,7 @@ describe('Airport', function() {
 
     it("Cannot take off if plane is not in the airport", function() {
       spyOn(weather, 'getWeather').and.returnValue('Sunny');
+      cityAirport.canLand(ryanAir677.name);
       expect(function() { cityAirport.canTakeOff(airfrance787.name); }).toThrowError("AirFrance 787 cannot take off as this plane is not in this airport");
     });
   });
