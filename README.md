@@ -53,8 +53,8 @@ I want to instruct a plane to land at an airport
 ##### Running this user story on browser console:
 var cityAirport = new Airport()\
 var airFrance784 = new Plane('Air France 784', cityAirport)\
-airFrance784.land()
-airFrance784.landed
+airFrance784.land()\
+airFrance784.landed\
 *Should return true if plane successfully landed
 ----
 
@@ -69,8 +69,8 @@ var cityAirport = new Airport()\
 var airFrance785 = new Plane('Air France 785',cityAirport)\
 airFrance785.land()
 *Weather is randomly chosen, if it returns 'Stormy'\
-*it should throw an error `Uncaught Error: Air France 785 cannot land due to bad weather`
-airFrance785.landed
+*it should throw an error `Uncaught Error: Air France 785 cannot land due to bad weather`\
+airFrance785.landed\
 *Should return false if weather was stormy
 ----
 
