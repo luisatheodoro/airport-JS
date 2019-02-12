@@ -1,6 +1,9 @@
 describe('Airport', function() {
-  var airport;
-  var weather;
+  let weather;
+  let cityAirport;
+  let stansteadAirport;
+  let airfrance787;
+  let ryanAir677;
 
   beforeEach(function() {
     cityAirport = new Airport('City');
