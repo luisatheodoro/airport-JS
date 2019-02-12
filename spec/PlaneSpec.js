@@ -3,7 +3,7 @@ describe('Plane', function() {
   var cityAirport;
 
   beforeEach(function () {
-    cityAirport = new Airport();
+    cityAirport = new Airport('City');
     airFrance787 = new Plane('AirFrance 787', cityAirport);
   });
 
