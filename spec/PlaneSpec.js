@@ -3,13 +3,22 @@ describe('Plane', function() {
   var cityAirport;
 
   beforeEach(function () {
-    cityAirport = new Airport('City');
+    cityAirport = {
+      name: function () {
+        return 'City';
+      },
+      canLand: function (plane) {
+        return true;
+      },
+      canTakeOff: function (plane) {
+        return true;
+      }
+    };
     airFrance787 = new Plane('AirFrance 787', cityAirport);
   });
 
   describe('#landed', function () {
     it('returns true if plane was able to land', function () {
-      spyOn(cityAirport, 'canLand').and.returnValue(true);
       airFrance787.land();
       expect(airFrance787.landed).toEqual( true);
     });
@@ -21,9 +30,7 @@ describe('Plane', function() {
     });
 
     it("Returns false to '#landed' when plane has taken off" , function(){
-      spyOn(cityAirport, 'canLand').and.returnValue(true);
       airFrance787.land();
-      spyOn(cityAirport, 'canTakeOff').and.returnValue(true);
       airFrance787.takeOff();
       expect(airFrance787.landed).toEqual( false);
     });
@@ -31,7 +38,6 @@ describe('Plane', function() {
 
   describe("#land", function () {
     it("Plane cannot land if plane is already in land", function(){
-      spyOn(cityAirport, 'canLand').and.returnValue(true);
       airFrance787.landed = true;
       expect(function() { airFrance787.land() }).toThrowError("Cannot land, because plane is already landed");
     });
