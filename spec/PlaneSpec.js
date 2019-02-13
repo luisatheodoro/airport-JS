@@ -60,6 +60,11 @@ describe('Plane', function() {
       airFrance787.landed = false;
       expect(function() { airFrance787.takeOff(cityAirport) }).toThrowError("Cannot take off, because plane has already taken off or is not in this airport");
     });
+
+    it("Plane cannot take off from a different airport", function(){
+      airFrance787.land(cityAirport);
+      expect(function() { airFrance787.takeOff(gatwickAirport); }).toThrowError("Cannot take off, because plane has already taken off or is not in this airport");
+    });
   });
 
   describe('#_isLandedAt', function () {
