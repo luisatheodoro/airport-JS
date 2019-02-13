@@ -14,24 +14,24 @@ describe('Plane', function() {
         return true;
       }
     };
-    airFrance787 = new Plane('AirFrance 787', cityAirport);
+    airFrance787 = new Plane('AirFrance 787');
   });
 
   describe('#landed', function () {
     it('returns true if plane was able to land', function () {
-      airFrance787.land();
+      airFrance787.land(cityAirport);
       expect(airFrance787.landed).toEqual( true);
     });
 
     it("Returns false when plane was not able to land", function(){
       spyOn(cityAirport, 'canLand').and.returnValue(false);
-      airFrance787.land();
+      airFrance787.land(cityAirport);
       expect(airFrance787.landed).toEqual( false);
     });
 
     it("Returns false to '#landed' when plane has taken off" , function(){
-      airFrance787.land();
-      airFrance787.takeOff();
+      airFrance787.land(cityAirport);
+      airFrance787.takeOff(cityAirport);
       expect(airFrance787.landed).toEqual( false);
     });
   });
@@ -39,14 +39,14 @@ describe('Plane', function() {
   describe("#land", function () {
     it("Plane cannot land if plane is already in land", function(){
       airFrance787.landed = true;
-      expect(function() { airFrance787.land() }).toThrowError("Cannot land, because plane is already landed");
+      expect(function() { airFrance787.land(cityAirport) }).toThrowError("Cannot land, because plane is already landed");
     });
   });
 
   describe('#take_off', function () {
     it("Plane cannot take off if plane is already flying", function(){
       airFrance787.landed = false;
-      expect(function() { airFrance787.takeOff(); }).toThrowError("Cannot take off, because plane has already taken off or is not in this airport");
+      expect(function() { airFrance787.takeOff(cityAirport); }).toThrowError("Cannot take off, because plane has already taken off or is not in this airport");
     });
   });
 });
