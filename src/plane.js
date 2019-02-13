@@ -1,5 +1,6 @@
 function Plane(name) {
   this.name = name;
+  this._isLandedAt = [];
   this.landed = false;
 }
 
@@ -8,6 +9,7 @@ Plane.prototype = {
     if (this.landed) {
       throw new Error('Cannot land, because plane is already landed');
     } else if (airport.canLand(this.name)) {
+      this._isLandedAt.push(airport);
       this.landed = true;
     }
   },

@@ -49,4 +49,11 @@ describe('Plane', function() {
       expect(function() { airFrance787.takeOff(cityAirport); }).toThrowError("Cannot take off, because plane has already taken off or is not in this airport");
     });
   });
+
+  describe('#_isLandedAt', function () {
+    it("Plane saves the airport it landed", function(){
+      airFrance787.land(cityAirport);
+      expect(airFrance787._isLandedAt.length).toBe(1);
+    });
+  });
 });
