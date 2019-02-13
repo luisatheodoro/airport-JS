@@ -1,11 +1,23 @@
 describe('Plane', function() {
   var airFrance787;
   var cityAirport;
+  var gatwickAirport;
 
   beforeEach(function () {
     cityAirport = {
       name: function () {
         return 'City';
+      },
+      canLand: function (plane) {
+        return true;
+      },
+      canTakeOff: function (plane) {
+        return true;
+      }
+    };
+    gatwickAirport = {
+      name: function () {
+        return 'Gatwick';
       },
       canLand: function (plane) {
         return true;
@@ -46,7 +58,7 @@ describe('Plane', function() {
   describe('#take_off', function () {
     it("Plane cannot take off if plane is already flying", function(){
       airFrance787.landed = false;
-      expect(function() { airFrance787.takeOff(cityAirport); }).toThrowError("Cannot take off, because plane has already taken off or is not in this airport");
+      expect(function() { airFrance787.takeOff(cityAirport) }).toThrowError("Cannot take off, because plane has already taken off or is not in this airport");
     });
   });
 
@@ -54,6 +66,12 @@ describe('Plane', function() {
     it("Plane saves the airport it landed", function(){
       airFrance787.land(cityAirport);
       expect(airFrance787._isLandedAt.length).toBe(1);
+    });
+
+    it("Will set _isLandedAt status to empty when all plane has taken off from airport", function(){
+      airFrance787.land(cityAirport);
+      airFrance787.takeOff(cityAirport);
+      expect(airFrance787._isLandedAt.length).toBe(0);
     });
   });
 });
