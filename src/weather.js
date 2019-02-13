@@ -1,4 +1,5 @@
-function Weather() {}
+function Weather() {
+}
 
 Weather.prototype = {
   _randomWeather: function () {
