@@ -9,7 +9,7 @@ Plane.prototype = {
     if (this.landed) {
       throw new Error('Cannot land, because plane is already landed');
     } else if (airport.canLand(this.name)) {
-      this._isLandedAt.push(airport);
+      this._addAirportToIsLandedAt(airport);
       this.landed = true;
     }
   },
@@ -18,8 +18,16 @@ Plane.prototype = {
     if (!this.landed || this._isLandedAt[0].name !== airport.name) {
       throw new Error('Cannot take off, because plane has already taken off or is not in this airport');
     }else if (this._isLandedAt[0].name === airport.name && airport.canTakeOff(this.name)) {
+      this._removeAirportFromIsLandedAt(airport);
       this.landed = false;
-      this._isLandedAt.splice(this._isLandedAt.indexOf(airport), 1);
     }
-  }
+  },
+
+  _addAirportToIsLandedAt: function(airport) {
+    this._isLandedAt.push(airport);
+  },
+
+  _removeAirportFromIsLandedAt: function(airport) {
+    this._isLandedAt.splice(this._isLandedAt.indexOf(airport), 1);
+  },
 };
